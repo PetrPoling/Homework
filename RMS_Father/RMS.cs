@@ -11,35 +11,37 @@ namespace ConsoleApp3
             var x = Console.ReadLine();
             while (x != "stop")
             {
-                
-            // Create a new instance of the RestaurantManager class.
-            RestaurantManager manager = new RestaurantManager();
-            
-            // Prompt the user to input information.
-            Console.WriteLine("Please Input Ingredient_Name:");
-            string Name_ingredient = Console.ReadLine();
-            Console.WriteLine("Please Input Ingredient_Price:");
-            decimal Price_ingredient = decimal.Parse(Console.ReadLine());
-            // Create a new ingredient and add it to the list of ingredients.
-            Ingredient ingredient = new Ingredient();
-            ingredient.Name = Name_ingredient;
-            ingredient.Price = Price_ingredient;
-            manager.AddIngredient(ingredient);
-            // Display the list of ingredients.
-            List<Ingredient> ingredients = manager.GetIngredients();
-            Console.WriteLine("Ingredients List:");
-            foreach (Ingredient i in ingredients)
-            {
-                Console.WriteLine(i.Name);
-                Console.WriteLine(i.Price);
-            }
-            foreach (var i  in ingredients)
-                {
-                    Console.WriteLine(i);
-                }
-            
 
-            Console.WriteLine("If enough ingredients input stop:");
+                // Create a new instance of the RestaurantManager class.
+                RestaurantManager manager = new RestaurantManager();
+
+                // Prompt the user to input information.
+                Console.WriteLine("Please Input Ingredient_Name:");
+                string Name_ingredient = Console.ReadLine();
+                Console.WriteLine("Please Input Ingredient_Price:");
+                decimal Price_ingredient = decimal.Parse(Console.ReadLine());
+                // Create a new ingredient and add it to the list of ingredients.
+                Ingredient ingredient = new Ingredient();
+                ingredient.Name = Name_ingredient;
+                ingredient.Price = Price_ingredient;
+                manager.AddIngredient(ingredient);
+                // Display the list of ingredients.
+                List<Ingredient> ingredients = manager.GetIngredients();
+                Console.WriteLine("Ingredients List:");
+                foreach (Ingredient i in ingredients)
+                {
+                    Console.WriteLine(i.Name);
+                    Console.WriteLine(i.Price);
+                }
+
+                // decimal k = 1;
+                //while (k <= ingredients.Count )
+                // {  k += 1;
+                //    Console.WriteLine("Name: " + ingredient.Name + ", Price: " + ingredient.Price);
+                //}
+                Console.WriteLine(manager.GetIngredients());
+
+                    Console.WriteLine("If enough ingredients input stop:");
             x = Console.ReadLine();
             }
         }
