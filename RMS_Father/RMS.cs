@@ -51,6 +51,11 @@ namespace Rsm
         public class RestaurantManager
         {
             public List<Dish> Dishes;
+            public List<Ingredient> Ingredients;
+            public List<Employee> Employees;
+            public List<Table> Tables;
+            public List<Customer> Customers;
+            public List<Order> Orders;
         }
     }
 }
