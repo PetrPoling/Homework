@@ -48,7 +48,46 @@ namespace ConsoleApp3
                             Console.WriteLine($"Price: {i.Price}");
                         }
 
-                        Console.WriteLine("If enough ingredients input stop if you want to continue press enter:");
+                        Console.WriteLine("If enough ingredients input stop, if you want to continue press enter:");
+                        x = Console.ReadLine();
+                    }
+                }
+                if (entrance == "dishes")
+                {
+                    // start
+                    RestaurantManager manager = new RestaurantManager();
+                    string Name_dish;
+                    decimal Price_dish;
+                    var x = Console.ReadLine();
+                    // Create a new ingredient and add it to the list of ingredients.
+                    Dish dish = new Dish();
+                    manager.AddDish(dish);
+                    // Display the list of ingredients.
+                    List<Dish> dishes = manager.GetDishes();
+                    while (x != "stop")
+                    {
+
+                        // Create a new instance of the RestaurantManager class.
+
+                        // Prompt the user to input information.
+                        Console.WriteLine("Please Input Dish_Name:");
+                        Name_dish = Console.ReadLine();
+                        Console.WriteLine("Please Input Dish_Price:");
+                        Price_dish = decimal.Parse(Console.ReadLine());
+                        // Create a new dish and add it to the list of Dishes.
+                        dish.Name = Name_dish;
+                        dish.Price = Price_dish;
+                        manager.AddDish(dish);
+                        // Display the list of Dishes.
+                        Console.WriteLine("Dishes List:");
+                        foreach (Dish i in dishes)
+                        {
+                            Console.WriteLine($"Dish: {i.Name}");
+                            Console.WriteLine($"Price: {i.Price}");
+
+                        }
+
+                        Console.WriteLine("If you chose the dishes input stop, if you want to continue press enter:");
                         x = Console.ReadLine();
                     }
                 }
