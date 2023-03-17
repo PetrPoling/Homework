@@ -6,25 +6,41 @@ namespace ConsoleApp3
     public class Rms 
     {
         public static void Main(string[] args)
-        {
+        {   // start
+            Console.WriteLine("Please Input 1 to start the program:");
+            var x = Console.ReadLine();
+            while (x != "stop")
+            {
+                
             // Create a new instance of the RestaurantManager class.
             RestaurantManager manager = new RestaurantManager();
-
+            
             // Prompt the user to input information.
             Console.WriteLine("Please Input Ingredient_Name:");
-            string input = Console.ReadLine();
-
+            string Name_ingredient = Console.ReadLine();
+            Console.WriteLine("Please Input Ingredient_Price:");
+            decimal Price_ingredient = decimal.Parse(Console.ReadLine());
             // Create a new ingredient and add it to the list of ingredients.
             Ingredient ingredient = new Ingredient();
-            ingredient.Name = input;
+            ingredient.Name = Name_ingredient;
+            ingredient.Price = Price_ingredient;
             manager.AddIngredient(ingredient);
-
             // Display the list of ingredients.
             List<Ingredient> ingredients = manager.GetIngredients();
             Console.WriteLine("Ingredients List:");
             foreach (Ingredient i in ingredients)
             {
                 Console.WriteLine(i.Name);
+                Console.WriteLine(i.Price);
+            }
+            foreach (var i  in ingredients)
+                {
+                    Console.WriteLine(i);
+                }
+            
+
+            Console.WriteLine("If enough ingredients input stop:");
+            x = Console.ReadLine();
             }
         }
         // Create a struct to store information about an ingredient.
@@ -74,12 +90,12 @@ namespace ConsoleApp3
         // Create a class to manage the restaurant.
         public class RestaurantManager
         {
-            public List<Dish> Dishes;
-            public List<Ingredient> Ingredients;
-            public List<Employee> Employees;
-            public List<Table> Tables;
-            public List<Customer> Customers;
-            public List<Order> Orders;
+            public List<Ingredient> Ingredients = new List<Ingredient>(); // добавили инициализацию
+            public List<Dish> Dishes = new List<Dish>(); // добавили инициализацию
+            public List<Employee> Employees = new List<Employee>(); // добавили инициализацию
+            public List<Table> Tables = new List<Table>(); // добавили инициализацию
+            public List<Customer> Customers = new List<Customer>(); // добавили инициализацию
+            public List<Order> Orders = new List<Order>(); // добавили инициализацию
 
             // Add a dish to the list of dishes.
             public void AddDish(Dish dish)
