@@ -10,7 +10,7 @@ namespace ConsoleApp3
             string entrance = "start";
             while (entrance != "exit")
             {
-                Console.WriteLine("You have such options: ingredients, dishes, orders, employes, tables. customers, " +
+                Console.WriteLine("You have such options: ingredients, dishes, orders, employees, tables. customers, " +
                                   "or exit to stop the application");
                 Console.WriteLine("Choose your option:");
                 entrance = Console.ReadLine();
@@ -143,8 +143,6 @@ namespace ConsoleApp3
                     while (x != "stop")
                     {
 
-                        // Create a new instance of the RestaurantManager class.
-
                         // Prompt the user to input information.
                         Console.WriteLine("Please Input Dish_Name:");
                         Name_dish = Console.ReadLine();
@@ -180,9 +178,7 @@ namespace ConsoleApp3
                     List<Order> orders = manager.GetOrders();
                     while (x != "stop")
                     {
-
-                        // Create a new instance of the RestaurantManager class.
-
+                        
                         // Prompt the user to input information.
                         Console.WriteLine("Please Input Order_List:");
                         Name_order = Console.ReadLine();
@@ -201,6 +197,41 @@ namespace ConsoleApp3
 
                         }
                         Console.WriteLine("If you chose the order, input stop to approve, if you want to continue press enter:");
+                        x = Console.ReadLine();
+                    }
+                }
+                if (entrance == "employees")
+                {
+                    // start
+                    RestaurantManager manager = new RestaurantManager();
+                    string Name_employee;
+                    string Position_employee;
+                    var x = Console.ReadLine();
+                    // Hire a new employee and add it to the list of employees.
+                    Employee employee = new Employee();
+                    manager.AddEmployee(employee);
+                    // Display the list of orders.
+                    List<Employee> employees = manager.GetEmployees();
+                    while (x != "stop")
+                    {
+                        // Prompt the user to input information.
+                        Console.WriteLine("Please Input Employee_Name:");
+                        Name_employee = Console.ReadLine();
+                        Console.WriteLine("Please Input Employee_Position:");
+                        Position_employee = Console.ReadLine();
+                        // Create a new order and add it to the list of Employees.
+                        employee.Name = Name_employee;
+                        employee.Position = Position_employee;
+                        manager.AddEmployee(employee);
+                        // Display the list of Employees.
+                        Console.WriteLine("Employees List:");
+                        foreach (Employee i in employees)
+                        {
+                            Console.WriteLine($"Name: {i.Name}");
+                            Console.WriteLine($"Position: {i.Position}");
+
+                        }
+                        Console.WriteLine("If you added employee, input stop, if you want to continue press enter:");
                         x = Console.ReadLine();
                     }
                 }
