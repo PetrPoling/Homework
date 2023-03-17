@@ -10,7 +10,7 @@ namespace ConsoleApp3
             string entrance = "start";
             while (entrance != "exit")
             {
-                Console.WriteLine("You have such options: ingredients, dishes, orders, employees, tables. customers, " +
+                Console.WriteLine("You have such options: ingredients, dishes, orders, employees, tables, customers " +
                                   "or exit to stop the application");
                 Console.WriteLine("Choose your option:");
                 entrance = Console.ReadLine();
@@ -236,6 +236,76 @@ namespace ConsoleApp3
                     }
                 }
                 
+                if (entrance == "tables")
+                {
+                    // start
+                    RestaurantManager manager = new RestaurantManager();
+                    string Number_table;
+                    string Seats_table;
+                    var x = Console.ReadLine();
+                    // Create a new table and add it to the list of tables.
+                    Table table = new Table();
+                    manager.AddTable(table);
+                    // Display the list of orders.
+                    List<Table> tables = manager.GetTables();
+                    while (x != "stop")
+                    {
+                        // Prompt the user to input information.
+                        Console.WriteLine("Please Input Table_Number:");
+                        Number_table = Console.ReadLine();
+                        Console.WriteLine("Please Input Table_Seats:");
+                        Seats_table = Console.ReadLine();
+                        // Create a new table and add it to the list of tabless.
+                        table.Number = Number_table;
+                        table.Seats = Seats_table;
+                        manager.AddTable(table);
+                        // Display the list of Tables.
+                        Console.WriteLine("Tables List:");
+                        foreach (Table i in tables)
+                        {
+                            Console.WriteLine($"Name: {i.Number}");
+                            Console.WriteLine($"Position: {i.Seats}");
+
+                        }
+                        Console.WriteLine("If you added table, input stop, if you want to continue press enter:");
+                        x = Console.ReadLine();
+                    }
+                }
+                if (entrance == "customers")
+                {
+                    // start
+                    RestaurantManager manager = new RestaurantManager();
+                    string Name_customer;
+                    string PhoneNumber_customer;
+                    var x = Console.ReadLine();
+                    // Create a new table and add it to the list of tables.
+                    Customer customer = new Customer();
+                    manager.AddCustomer(customer);
+                    // Display the list of orders.
+                    List<Customer> customers = manager.GetCustomers();
+                    while (x != "stop")
+                    {
+                        // Prompt the user to input information.
+                        Console.WriteLine("Please Input Customer_Name:");
+                        Name_customer = Console.ReadLine();
+                        Console.WriteLine("Please Input Customer_PhoneNumber:");
+                        PhoneNumber_customer = Console.ReadLine();
+                        // Create a new table and add it to the list of tabless.
+                        customer.Name = Name_customer;
+                        customer.PhoneNumber = PhoneNumber_customer;
+                        manager.AddCustomer(customer);
+                        // Display the list of Customers.
+                        Console.WriteLine("Tables List:");
+                        foreach ( Customer i in customers)
+                        {
+                            Console.WriteLine($"Name: {i.Name}");
+                            Console.WriteLine($"PhoneNumber: {i.PhoneNumber}");
+
+                        }
+                        Console.WriteLine("If you added customers, input stop, if you want to continue press enter:");
+                        x = Console.ReadLine();
+                    }
+                }
             }
         }
         // Create a struct to store information about an ingredient.
@@ -251,13 +321,11 @@ namespace ConsoleApp3
         {
             public string Name;
             public decimal Price;
-            public List<Ingredient> Ingredients;
         }
 
         // Create a struct to store information about an order.
         public struct Order
         {
-            public List<Dish> Dishes;
             public string Name;
             public decimal TotalPrice;
         }
@@ -272,15 +340,15 @@ namespace ConsoleApp3
         // Create a struct to store information about a table.
         public struct Table
         {
-            public int Number;
-            public int Seats;
+            public string Number;
+            public string Seats;
         }
 
         // Create a struct to store information about a customer.
         public struct Customer
         {
             public string Name;
-            public int PhoneNumber;
+            public string PhoneNumber;
         }
 
         // Create a class to manage the restaurant.
