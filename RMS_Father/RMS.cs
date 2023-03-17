@@ -47,5 +47,10 @@ namespace Rsm
             public string Name;
             public int PhoneNumber;
         }
+
+        public class RestaurantManager
+        {
+            public List<Dish> Dishes;
+        }
     }
 }
