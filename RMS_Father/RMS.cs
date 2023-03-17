@@ -6,40 +6,52 @@ namespace ConsoleApp3
     public class Rms 
     {
         public static void Main(string[] args)
-        {   // start
-            RestaurantManager manager = new RestaurantManager();
-            var x = Console.ReadLine();
-            string Name_ingredient;
-            decimal Price_ingredient;
-            // Create a new ingredient and add it to the list of ingredients.
-            Ingredient ingredient = new Ingredient();
-            manager.AddIngredient(ingredient);
-            // Display the list of ingredients.
-            List<Ingredient> ingredients = manager.GetIngredients();
-            while (x != "stop")
+        {
+            string entrance = "start";
+            while (entrance != "exit")
             {
-
-                // Create a new instance of the RestaurantManager class.
-
-                // Prompt the user to input information.
-                Console.WriteLine("Please Input Ingredient_Name:");
-                Name_ingredient = Console.ReadLine();
-                Console.WriteLine("Please Input Ingredient_Price:");
-                Price_ingredient = decimal.Parse(Console.ReadLine());
-                // Create a new ingredient and add it to the list of ingredients.
-                ingredient.Name = Name_ingredient;
-                ingredient.Price = Price_ingredient;
-                manager.AddIngredient(ingredient);
-                // Display the list of ingredients.
-                Console.WriteLine("Ingredients List:");
-                foreach (Ingredient i in ingredients)
+                Console.WriteLine("You have such options: ingredients, dishes, orders, employes, tables. customers, " +
+                                  "or exit to stop the application");
+                Console.WriteLine("Choose your option:");
+                entrance = Console.ReadLine();
+                if (entrance == "ingredients")
                 {
-                    Console.WriteLine( $"Ingredient: {i.Name}");
-                    Console.WriteLine($"Price: {i.Price}");
-                }
+                    // start
+                    RestaurantManager manager = new RestaurantManager();
+                    string Name_ingredient;
+                    decimal Price_ingredient;
+                    var x = Console.ReadLine();
+                    // Create a new ingredient and add it to the list of ingredients.
+                    Ingredient ingredient = new Ingredient();
+                    manager.AddIngredient(ingredient);
+                    // Display the list of ingredients.
+                    List<Ingredient> ingredients = manager.GetIngredients();
+                    while (x != "stop")
+                    {
 
-                Console.WriteLine("If enough ingredients input stop:");
-            x = Console.ReadLine();
+                        // Create a new instance of the RestaurantManager class.
+
+                        // Prompt the user to input information.
+                        Console.WriteLine("Please Input Ingredient_Name:");
+                        Name_ingredient = Console.ReadLine();
+                        Console.WriteLine("Please Input Ingredient_Price:");
+                        Price_ingredient = decimal.Parse(Console.ReadLine());
+                        // Create a new ingredient and add it to the list of ingredients.
+                        ingredient.Name = Name_ingredient;
+                        ingredient.Price = Price_ingredient;
+                        manager.AddIngredient(ingredient);
+                        // Display the list of ingredients.
+                        Console.WriteLine("Ingredients List:");
+                        foreach (Ingredient i in ingredients)
+                        {
+                            Console.WriteLine($"Ingredient: {i.Name}");
+                            Console.WriteLine($"Price: {i.Price}");
+                        }
+
+                        Console.WriteLine("If enough ingredients input stop if you want to continue press enter:");
+                        x = Console.ReadLine();
+                    }
+                }
             }
         }
         // Create a struct to store information about an ingredient.
