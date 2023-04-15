@@ -1,0 +1,60 @@
+E:\Repos\OOP\UI\bin\Debug\net5.0\UI.exe
+E:\Repos\OOP\UI\bin\Debug\net5.0\UI.deps.json
+E:\Repos\OOP\UI\bin\Debug\net5.0\UI.runtimeconfig.json
+E:\Repos\OOP\UI\bin\Debug\net5.0\UI.runtimeconfig.dev.json
+E:\Repos\OOP\UI\bin\Debug\net5.0\UI.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\ref\UI.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\UI.pdb
+E:\Repos\OOP\UI\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\Core.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\DAL.Abstractions.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\DAL.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\DAL.pdb
+E:\Repos\OOP\UI\bin\Debug\net5.0\Core.pdb
+E:\Repos\OOP\UI\bin\Debug\net5.0\DAL.Abstractions.pdb
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.csproj.AssemblyReference.cache
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.GeneratedMSBuildEditorConfig.editorconfig
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.AssemblyInfoInputs.cache
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.AssemblyInfo.cs
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.csproj.CoreCompileInputs.cache
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.csproj.CopyComplete
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.dll
+E:\Repos\OOP\UI\obj\Debug\net5.0\ref\UI.dll
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.pdb
+E:\Repos\OOP\UI\obj\Debug\net5.0\UI.genruntimeconfig.cache
+E:\Repos\OOP\UI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\BLL.Abstractions.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\BLL.dll
+E:\Repos\OOP\UI\bin\Debug\net5.0\BLL.Abstractions.pdb
+E:\Repos\OOP\UI\bin\Debug\net5.0\BLL.pdb
+E:\Repos\OOP\UI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\UI.exe
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\UI.deps.json
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\UI.runtimeconfig.json
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\UI.runtimeconfig.dev.json
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\UI.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\UI.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\BLL.Abstractions.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\BLL.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\Core.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\DAL.Abstractions.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\DAL.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\BLL.Abstractions.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\BLL.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\Core.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\DAL.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\bin\Debug\net5.0\DAL.Abstractions.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.csproj.AssemblyReference.cache
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.AssemblyInfoInputs.cache
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.AssemblyInfo.cs
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.csproj.CoreCompileInputs.cache
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.csproj.CopyComplete
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\refint\UI.dll
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.pdb
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\UI.genruntimeconfig.cache
+C:\Users\Пользователь\OneDrive\Рабочий стол\OOP\UI\obj\Debug\net5.0\ref\UI.dll
