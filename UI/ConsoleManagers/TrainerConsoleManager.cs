@@ -85,20 +85,12 @@ namespace UI.ConsoleManagers
             {
                 throw new ArgumentNullException(nameof(date));
             }
-
-            var allTrainers = await base.GetAllAsync();
-            var availableTrainers = new List<Trainer>();
-
-            foreach (var trainer in allTrainers)
-            {
-                if (trainer.AvailableDates.Contains(date))
-                {
-                    availableTrainers.Add(trainer);
-                }
-            }
+            
+            var availableTrainers = await base.GetByPredicateAsync(trainer => trainer.AvailableDates.Contains(date));
 
             return availableTrainers;
         }
+
 
         public async Task<bool> CheckTrainerAvailability(Guid trainerId, DateTime date, TimeSpan startTime,
             TimeSpan endTime)
