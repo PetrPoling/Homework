@@ -136,91 +136,137 @@ namespace UI.ConsoleManagers
 
 
         public async Task UpdateSubscriptionAsync()
+{
+    Console.Write("Enter the ID of the subscription to update: ");
+    string idString = Console.ReadLine();
+
+    if (Guid.TryParse(idString, out Guid id))
+    {
+        Subscription subscription = await _subscriptionService.GetByIdAsync(id);
+
+        if (subscription != null)
         {
-            Console.Write("Enter the ID of the subscription to update: ");
-            string idString = Console.ReadLine();
+            Console.WriteLine($"Current subscription: {subscription}");
 
-            if (Guid.TryParse(idString, out Guid id))
+            Guid memberId = await GetMemberIdAsync();
+            SubscriptionType type = await GetSubscriptionTypeAsync();
+            DateTime startDate = await GetStartDateAsync();
+            DateTime endDate = await GetEndDateAsync();
+
+            Subscription updatedSubscription = new Subscription
             {
-                Subscription subscription = await _subscriptionService.GetByIdAsync(id);
+                Id = subscription.Id,
+                Member = await _memberService.GetByIdAsync(memberId),
+                Type = type,
+                StartDate = startDate,
+                EndDate = endDate,
+                IsActive = subscription.IsActive
+            };
 
-                if (subscription != null)
-                {
-                    Console.WriteLine($"Current subscription: {subscription}");
+            await _subscriptionService.UpdateAsync(updatedSubscription);
 
-                    Console.Write("Enter the ID of the member to associate with this subscription: ");
-                    string memberIdString = Console.ReadLine();
+            Console.WriteLine("Subscription updated successfully.");
+        }
+        else
+        {
+            Console.WriteLine("Subscription not found.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Invalid subscription ID format.");
+    }
+}
 
-                    if (Guid.TryParse(memberIdString, out Guid memberId))
-                    {
-                        Member member = await _memberService.GetByIdAsync(memberId);
+private async Task<Guid> GetMemberIdAsync()
+{
+    Guid memberId;
 
-                        if (member != null)
-                        {
-                            Console.Write("Enter the subscription type (Monthly, Quarterly, or Annual): ");
-                            string typeString = Console.ReadLine();
+    do
+    {
+        Console.Write("Enter the ID of the member to associate with this subscription: ");
+        string memberIdString = Console.ReadLine();
 
-                            if (Enum.TryParse<SubscriptionType>(typeString, out SubscriptionType type))
-                            {
-                                Console.Write("Enter the start date (MM/DD/YYYY): ");
-                                string startDateString = Console.ReadLine();
+        if (Guid.TryParse(memberIdString, out memberId))
+        {
+            Member member = await _memberService.GetByIdAsync(memberId);
 
-                                if (DateTime.TryParse(startDateString, out DateTime startDate))
-                                {
-                                    Console.Write("Enter the end date (MM/DD/YYYY): ");
-                                    string endDateString = Console.ReadLine();
-
-                                    if (DateTime.TryParse(endDateString, out DateTime endDate))
-                                    {
-                                        Subscription updatedSubscription = new Subscription
-                                        {
-                                            Id = subscription.Id,
-                                            Member = member,
-                                            Type = type,
-                                            StartDate = startDate,
-                                            EndDate = endDate,
-                                            IsActive = subscription.IsActive
-                                        };
-
-                                        await _subscriptionService.UpdateAsync(updatedSubscription);
-
-                                        Console.WriteLine("Subscription updated successfully.");
-                                    }
-                                    else
-                                    {
-                                        Console.WriteLine("Invalid end date format.");
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("Invalid start date format.");
-                                }
-                            }
-                            else
-                            {
-                                Console.WriteLine("Invalid subscription type.");
-                            }
-                        }
-                        else
-                        {
-                            Console.WriteLine("Member not found.");
-                        }
-                    }
-                    else
-                    {
-                        Console.WriteLine("Invalid member ID format.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Subscription not found.");
-                }
+            if (member != null)
+            {
+                return memberId;
             }
             else
             {
-                Console.WriteLine("Invalid subscription ID format.");
+                Console.WriteLine("Member not found.");
             }
         }
+        else
+        {
+            Console.WriteLine("Invalid member ID format.");
+        }
+    } while (true);
+}
+
+private async Task<SubscriptionType> GetSubscriptionTypeAsync()
+{
+    SubscriptionType type;
+
+    do
+    {
+        Console.Write("Enter the subscription type (Monthly, Quarterly, or Annual): ");
+        string typeString = Console.ReadLine();
+
+        if (Enum.TryParse<SubscriptionType>(typeString, out type))
+        {
+            return type;
+        }
+        else
+        {
+            Console.WriteLine("Invalid subscription type.");
+        }
+    } while (true);
+}
+
+private async Task<DateTime> GetStartDateAsync()
+{
+    DateTime startDate;
+
+    do
+    {
+        Console.Write("Enter the start date (MM/DD/YYYY): ");
+        string startDateString = Console.ReadLine();
+
+        if (DateTime.TryParse(startDateString, out startDate))
+        {
+            return startDate;
+        }
+        else
+        {
+            Console.WriteLine("Invalid start date format.");
+        }
+    } while (true);
+}
+
+private async Task<DateTime> GetEndDateAsync()
+{
+    DateTime endDate;
+
+    do
+    {
+        Console.Write("Enter the end date (MM/DD/YYYY): ");
+        string endDateString = Console.ReadLine();
+
+        if (DateTime.TryParse(endDateString, out endDate))
+        {
+            return endDate;
+        }
+        else
+        {
+            Console.WriteLine("Invalid end date format.");
+        }
+    } while (true);
+}
+
 
         public async Task DeleteSubscriptionAsync()
         {
