@@ -21,6 +21,7 @@ namespace BLL.Services
             member.IsActive = true;
             member.SubscriptionStartDate = DateTime.Now;
             member.SubscriptionEndDate = DateTime.Now.AddYears(1);
+    
             await _subscriptionService.CreateSubscription(new Subscription
             {
                 Member = member.Id,
@@ -28,32 +29,40 @@ namespace BLL.Services
                 StartDate = member.SubscriptionStartDate,
                 EndDate = member.SubscriptionEndDate
             });
-            return await Add(member);;
+    
+            return await Add(member);
         }
-
+        
         public async Task<List<Member>> GetActiveMembers()
         {
-            throw new NotImplementedException();
+            return await _repository.GetAllAsync(m => m.IsActive == true);
         }
 
         public async Task<List<Member>> GetMembersBySubscriptionType(string subscriptionType)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByPredicateAsync(member => member.SubscriptionType == subscriptionType);
         }
 
         public async Task<List<Member>> GetMembersWithUpcomingRenewal(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return await _repository.GetByPredicateAsync(member => member.SubscriptionEndDate > startDate && member.SubscriptionEndDate < endDate);
         }
 
         public async Task<bool> CheckMemberAttendance(Guid memberId, DateTime date)
         {
-            throw new NotImplementedException();
+            var member = await _repository.GetByIdAsync(memberId);
+            return member.Attendance.Any(a => a.Date == date);
         }
 
         public async Task RecordMemberAttendance(Guid memberId, DateTime date)
         {
-            throw new NotImplementedException();
+            var member = await _repository.GetByIdAsync(memberId);
+            if (member.Attendance == null)
+            {
+                member.Attendance = new List<Attendance>();
+            }
+            member.Attendance.Add(new Attendance { Date = date });
+            await _repository.UpdateAsync(memberId, member);
         }
     }
 }
