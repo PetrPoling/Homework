@@ -31,12 +31,12 @@ namespace BLL.Services
 
         public async Task<List<Booking>> GetBookingsByClass(Guid classId)
         {
-            return await _unitOfWork.BookingRepository.GetBookingsByClass(classId);
+            return await _classService.BookingRepository.GetBookingsByClass(classId);
         }
 
         public async Task<List<Booking>> GetBookingsByDate(DateTime date)
         {
-            return await _classService.BookingRepository.GetBookingsByDate(date);
+            return await _dateService.BookingRepository.GetBookingsByDate(date);
         }
 
         public async Task ConfirmBooking(Guid bookingId)
