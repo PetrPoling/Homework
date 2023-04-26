@@ -18,6 +18,10 @@ x64/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+*obj/
+*bin/
+*bin
+*obj
 */obj/
 */bin/
 *.xml
