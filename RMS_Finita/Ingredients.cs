@@ -25,7 +25,7 @@ namespace RMS_Finita
                 }
             }
             File.WriteAllLines(filePath, lines);
-            Console.WriteLine("Else dishes:");
+            Console.WriteLine("Else ingredients:");
             StreamReader ing_r = new StreamReader(filePath, true);
             //Read the first line of text
             var line = ing_r.ReadLine();

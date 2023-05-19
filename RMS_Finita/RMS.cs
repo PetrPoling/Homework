@@ -77,6 +77,7 @@ public class Rms
                             }
                             else
                             {
+
                                 throw new Exception("error ingredient");
                             }
 
