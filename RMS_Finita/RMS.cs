@@ -1,438 +1,667 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace ConsoleApp3
+namespace RMS_Finita;
+
+public class Rms
 {
-    public class Rms 
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        string entrance = "start";
+        while (entrance != "exit")
         {
-            string entrance = "start";
-            while (entrance != "exit")
+            Console.WriteLine(
+                "You have such options: ingredients-1, dishes-2, orders-3, employees-4, tables-5, customers-6 " +
+                "or exit to stop the application");
+            Console.WriteLine("Choose your option:");
+            entrance = Console.ReadLine();
+            switch (entrance)
             {
-                Console.WriteLine("You have such options: ingredients, dishes, orders, employees, tables, customers " +
-                                  "or exit to stop the application");
-                Console.WriteLine("Choose your option:");
-                entrance = Console.ReadLine();
-                if (entrance == "ingredients")
+                case "1":
                 {
                     // start
-                    RestaurantManager manager = new RestaurantManager();
-                    string Name_ingredient;
-                    decimal Price_ingredient;
-                    var x = Console.ReadLine();
+                    var manager = new RestaurantManager();
+                    var x = "start";
                     // Create a new ingredient and add it to the list of ingredients.
-                    Ingredient ingredient = new Ingredient();
-                    manager.AddIngredient(ingredient);
+                    var ingredient = new Ingredient();
                     // Display the list of ingredients.
-                    List<Ingredient> ingredients = manager.GetIngredients();
+                    var ingredients = manager.GetIngredients();
+
                     while (x != "stop")
                     {
-
-                        // Create a new instance of the RestaurantManager class.
-
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Ingredient_Name:");
-                        Name_ingredient = Console.ReadLine();
-                        Console.WriteLine("Please Input Ingredient_Price:");
-                        Price_ingredient = decimal.Parse(Console.ReadLine());
-                        // Create a new ingredient and add it to the list of ingredients.
-                        ingredient.Name = Name_ingredient;
-                        ingredient.Price = Price_ingredient;
-                        manager.AddIngredient(ingredient);
-                        // Display the list of ingredients.
-                        Console.WriteLine("Ingredients List:");
-                        foreach (Ingredient i in ingredients)
+                        Console.WriteLine("Chose the option: add-1, observe-2, remove-3");
+                        x = Console.ReadLine();
+                        if (x == "1")
                         {
-                            Console.WriteLine($"Ingredient: {i.Name}");
-                            Console.WriteLine($"Price: {i.Price}");
+                            // Prompt the user to input information.
+                            Console.WriteLine("Please Input Ingredient_Name:");
+                            string Name_ingredient = Console.ReadLine();
+                            Console.WriteLine("Please Input Ingredient_Price:");
+                            string Price_ingredient = Console.ReadLine();
+                            Console.WriteLine("Please Input Ingredient_Amount:");
+                            string Amount_ingredient = Console.ReadLine();
+
+                            // Create a new ingredient and add it to the list of ingredients.
+                            Ingredient.name = Name_ingredient;
+                            Ingredient.price = Price_ingredient;
+                            Ingredient.amount = Amount_ingredient;
+                            Ingredients.AddIngredient(ingredient);
+                            string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
+                            if (System.IO.Directory.Exists(directoryPath))
+                            {
+                                StreamWriter ing_w = new StreamWriter("Ingredient.txt", true);
+                                ing_w.WriteLine((Ingredient.name, Ingredient.price, Ingredient.amount).ToString());
+
+                                ing_w.Dispose();
+                                //Pass the file path and file name to the StreamReader constructor
+                                StreamReader ing_r = new StreamReader("Ingredient.txt", true);
+                                //Read the first line of text
+                                var line = ing_r.ReadLine();
+                                //Continue to read until you reach end of f1ile
+                                while (line != null)
+                                {
+                                    //write the lie to console window
+                                    Console.WriteLine(line);
+                                    //Read the next line
+                                    line = ing_r.ReadLine();
+                                }
+
+                                //close the file
+                                ing_r.Close();
+                            }
+                            else
+                            {
+                                throw new Exception("error ingredient");
+                            }
+
                         }
 
+                        if (x == "2")
+                        {
+                            StreamReader ing_r = new StreamReader("Ingredient.txt", true);
+                            //Read the first line of text
+                            var line = ing_r.ReadLine();
+                            //Continue to read until you reach end of f1ile
+                            while (line != null)
+                            {
+                                //write the lie to console window
+                                Console.WriteLine(line);
+                                //Read the next line
+                                line = ing_r.ReadLine();
+                            }
+
+                            //close the file
+                            ing_r.Close();
+                        }
+
+                        if (x == "3")
+                        {
+                            Ingredients.DeleteIngredient();
+                        }
+
+                        // Display the list of ingredients.
+                        
                         Console.WriteLine("If enough ingredients input stop, if you want to continue press enter:");
                         x = Console.ReadLine();
                     }
+
+                    break;
                 }
-                if (entrance == "dishes")
+                case "2":
                 {
                     // start
                     RestaurantManager manager = new RestaurantManager();
-                    string Name_dish;
-                    decimal Price_dish;
-                    var x = Console.ReadLine();
-                    // Create a new ingredient and add it to the list of ingredients.
+                    var x = "start";
+                    // Create a new ingredient and add it to the list of dishes.
                     Dish dish = new Dish();
-                    manager.AddDish(dish);
-                    // Display the list of ingredients.
-                    List<Dish> dishes = manager.GetDishes();
+                    // Display the list of dishes.
+                    var dishes = manager.GetDishes();
+
                     while (x != "stop")
                     {
-
-                        // Create a new instance of the RestaurantManager class.
-
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Dish_Name:");
-                        Name_dish = Console.ReadLine();
-                        Console.WriteLine("Please Input Dish_Price:");
-                        Price_dish = decimal.Parse(Console.ReadLine());
-                        // Create a new dish and add it to the list of Dishes.
-                        dish.Name = Name_dish;
-                        dish.Price = Price_dish;
-                        manager.AddDish(dish);
-                        // Display the list of Dishes.
-                        Console.WriteLine("Dishes List:");
-                        foreach (Dish i in dishes)
+                        Console.WriteLine("Chose the option: add-1, observe-2, remove-3");
+                        x = Console.ReadLine();
+                        if (x == "1")
                         {
-                            Console.WriteLine($"Dish: {i.Name}");
-                            Console.WriteLine($"Price: {i.Price}");
+                            Console.WriteLine("Please Input Dish_Name:");
+                            var Name_dish = Console.ReadLine();
+                            Console.WriteLine("Please Input Dish_Price:");
+                            var Price_dish = Console.ReadLine();
+                            // Create a new dish and add it to the list of Dushes.
+                            Dish.name = Name_dish;
+                            Dish.price = Price_dish;
+                            Dishes.AddDish(dish);
+                            const string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
+                            if (System.IO.Directory.Exists(directoryPath))
+                            {
+                                StreamWriter dish_w = new StreamWriter("Dishes.txt", true);
+                                dish_w.WriteLine((Dish.name, Dish.price).ToString());
+
+                                dish_w.Dispose();
+                                Console.WriteLine("Dishes List:");
+                                //Pass the file path and file name to the StreamReader constructor
+                                StreamReader dish_r = new StreamReader("Dishes.txt", true);
+                                //Read the first line of text
+                                var line = dish_r.ReadLine();
+                                //Continue to read until you reach end of f1ile
+                                while (line != null)
+                                {
+                                    //write the lie to console window
+                                    Console.WriteLine(line);
+                                    //Read the next line
+                                    line = dish_r.ReadLine();
+                                }
+
+                                //close the file
+                                dish_r.Close();
+                            }
+                            else
+                            {
+                                throw new Exception("error dishes");
+                            }
 
                         }
-                        Console.WriteLine("If you chose the dishes input stop, if you want to continue press enter:");
-                        x = Console.ReadLine();
-                    }
-                }
-                if (entrance == "dishes")
-                {
-                    // start
-                    RestaurantManager manager = new RestaurantManager();
-                    string Name_dish;
-                    decimal Price_dish;
-                    var x = Console.ReadLine();
-                    // Create a new ingredient and add it to the list of ingredients.
-                    Dish dish = new Dish();
-                    manager.AddDish(dish);
-                    // Display the list of ingredients.
-                    List<Dish> dishes = manager.GetDishes();
-                    while (x != "stop")
-                    {
 
-                        // Create a new instance of the RestaurantManager class.
-
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Dish_Name:");
-                        Name_dish = Console.ReadLine();
-                        Console.WriteLine("Please Input Dish_Price:");
-                        Price_dish = decimal.Parse(Console.ReadLine());
-                        // Create a new dish and add it to the list of Dishes.
-                        dish.Name = Name_dish;
-                        dish.Price = Price_dish;
-                        manager.AddDish(dish);
-                        // Display the list of Dishes.
-                        Console.WriteLine("Dishes List:");
-                        foreach (Dish i in dishes)
+                        if (x == "2")
                         {
-                            Console.WriteLine($"Dish: {i.Name}");
-                            Console.WriteLine($"Price: {i.Price}");
+                            Console.WriteLine("Dishes List:");
+                            StreamReader dish_r = new StreamReader("Dishes.txt", true);
+                            //Read the first line of text
+                            var line = dish_r.ReadLine();
+                            //Continue to read until you reach end of f1ile
+                            while (line != null)
+                            {
+                                //write the lie to console window
+                                Console.WriteLine(line);
+                                //Read the next line
+                                line = dish_r.ReadLine();
+                            }
 
+                            //close the file
+                            dish_r.Close();
                         }
-                        Console.WriteLine("If you chose the dishes input stop triple time to approve, if you want to continue press enter:");
-                        x = Console.ReadLine();
-                    }
-                }
-                if (entrance == "dishes")
-                {
-                    // start
-                    RestaurantManager manager = new RestaurantManager();
-                    string Name_dish;
-                    decimal Price_dish;
-                    var x = Console.ReadLine();
-                    // Create a new ingredient and add it to the list of ingredients.
-                    Dish dish = new Dish();
-                    manager.AddDish(dish);
-                    // Display the list of ingredients.
-                    List<Dish> dishes = manager.GetDishes();
-                    while (x != "stop")
-                    {
 
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Dish_Name:");
-                        Name_dish = Console.ReadLine();
-                        Console.WriteLine("Please Input Dish_Price:");
-                        Price_dish = decimal.Parse(Console.ReadLine());
-                        // Create a new dish and add it to the list of Dishes.
-                        dish.Name = Name_dish;
-                        dish.Price = Price_dish;
-                        manager.AddDish(dish);
-                        // Display the list of Dishes.
-                        Console.WriteLine("Dishes List:");
-                        foreach (Dish i in dishes)
+                        if (x == "3")
                         {
-                            Console.WriteLine($"Dish: {i.Name}");
-                            Console.WriteLine($"Price: {i.Price}");
-
+                            Dishes.DeleteDish();
                         }
-                        Console.WriteLine("If you chose the dishes input stop twice to approve, if you want to continue press enter:");
+
+                        Console.WriteLine("If you chose the dishes input stop to approve, if you want to continue " +
+                                          "press enter:");
                         x = Console.ReadLine();
                     }
+
+                    break;
                 }
-                if (entrance == "orders")
+                case "3":
                 {
-                    // start
+                    // start.
                     RestaurantManager manager = new RestaurantManager();
-                    string Name_order;
-                    decimal Price_order;
-                    var x = Console.ReadLine();
+                    var x = "start";
                     // Create a new order and add it to the list of orders.
                     Order order = new Order();
-                    manager.AddOrder(order);
+                    Orders.AddOrder(order);
                     // Display the list of orders.
                     List<Order> orders = manager.GetOrders();
                     while (x != "stop")
                     {
-                        
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Order_List:");
-                        Name_order = Console.ReadLine();
-                        Console.WriteLine("Please Input Order_Price:");
-                        Price_order = decimal.Parse(Console.ReadLine());
-                        // Create a new order and add it to the list of Orderss.
-                        order.Name = Name_order;
-                        order.TotalPrice = Price_order;
-                        manager.AddOrder(order);
-                        // Display the list of Orders.
-                        Console.WriteLine("Orders List:");
-                        foreach (Order i in orders)
+                        Console.WriteLine("Chose the option: add-1, observe-2, remove-3");
+                        x = Console.ReadLine();
+                        switch (x)
                         {
-                            Console.WriteLine($"Order: {i.Name}");
-                            Console.WriteLine($"Price: {i.TotalPrice}");
+                            case "1":
+                            {
+                                // Prompt the user to input information.
+                                Console.WriteLine("Please Input Order_List:");
+                                var Name_order = Console.ReadLine();
+                                Console.WriteLine("Please Input Order_Price:");
+                                var Price_order = Console.ReadLine();
+                                // Create a new order and add it to the list of Orders.
+                                Order.name = Name_order;
+                                Order.totalprice = Price_order;
+                                Orders.AddOrder(order);
+                                // Display the list of Orders.
+                                const string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
+                                if (System.IO.Directory.Exists(directoryPath))
+                                {
+                                    StreamWriter ordr_w = new StreamWriter("Order.txt", true);
+                                    ordr_w.WriteLine((Order.name, Order.totalprice).ToString());
 
+                                    ordr_w.Dispose();
+                                    Console.WriteLine("Orders List:");
+                                    //Pass the file path and file name to the StreamReader constructor
+                                    StreamReader ordr_r = new StreamReader("Order.txt", true);
+                                    //Read the first line of text
+                                    var line = ordr_r.ReadLine();
+                                    //Continue to read until you reach end of f1ile
+                                    while (line != null)
+                                    {
+                                        //write the lie to console window
+                                        Console.WriteLine(line);
+                                        //Read the next line
+                                        line = ordr_r.ReadLine();
+                                    }
+
+                                    //close the file
+                                    ordr_r.Close();
+                                }
+                                else
+                                {
+                                    throw new Exception("error orders");
+                                }
+
+                                break;
+                            }
+                            case "2":
+                            {
+                                Console.WriteLine("Orders List:");
+                                //Pass the file path and file name to the StreamReader constructor
+                                StreamReader ordr_r = new StreamReader("Order.txt", true);
+                                //Read the first line of text
+                                var line = ordr_r.ReadLine();
+                                //Continue to read until you reach end of f1ile
+                                while (line != null)
+                                {
+                                    //write the lie to console window
+                                    Console.WriteLine(line);
+                                    //Read the next line
+                                    line = ordr_r.ReadLine();
+                                }
+
+                                //close the file
+                                ordr_r.Close();
+                                break;
+                            }
+                            case "3":
+                                Orders.DeleteOrder();
+                                break;
                         }
-                        Console.WriteLine("If you chose the order, input stop to approve, if you want to continue press enter:");
+
+                        Console.WriteLine("If you chose the order, input stop to approve, if you want to continue " +
+                                          "press enter:");
                         x = Console.ReadLine();
                     }
+
+                    break;
                 }
-                if (entrance == "employees")
+                case "4":
                 {
-                    // start
-                    RestaurantManager manager = new RestaurantManager();
-                    string Name_employee;
-                    string Position_employee;
-                    var x = Console.ReadLine();
                     // Hire a new employee and add it to the list of employees.
+                    RestaurantManager manager = new RestaurantManager();
+                    // start
+                    var x = "start";
+                    // Create a new order and add it to the list of Employees.
                     Employee employee = new Employee();
-                    manager.AddEmployee(employee);
-                    // Display the list of orders.
+                    Employees.AddEmployee(employee);
+                    // Display the list of Employees.
                     List<Employee> employees = manager.GetEmployees();
                     while (x != "stop")
                     {
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Employee_Name:");
-                        Name_employee = Console.ReadLine();
-                        Console.WriteLine("Please Input Employee_Position:");
-                        Position_employee = Console.ReadLine();
-                        // Create a new order and add it to the list of Employees.
-                        employee.Name = Name_employee;
-                        employee.Position = Position_employee;
-                        manager.AddEmployee(employee);
-                        // Display the list of Employees.
-                        Console.WriteLine("Employees List:");
-                        foreach (Employee i in employees)
+                        Console.WriteLine("Chose the option: add-1, observe-2, remove-3");
+                        x = Console.ReadLine();
+                        switch (x)
                         {
-                            Console.WriteLine($"Name: {i.Name}");
-                            Console.WriteLine($"Position: {i.Position}");
+                            case "1":
+                            {
+                                // Prompt the user to input information.
+                                Console.WriteLine("Please Input Employee_Name:");
+                                var Name_employee = Console.ReadLine();
+                                Console.WriteLine("Please Input Employee_Position:");
+                                var Position_employee = Console.ReadLine();
+                                // Create a new order and add it to the list of Employees.
+                                Employee.name = Name_employee;
+                                Employee.position = Position_employee;
+                                Employees.AddEmployee(employee);
+                                // Display the list of Employees.
+                                const string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
+                                if (System.IO.Directory.Exists(directoryPath))
+                                {
+                                    StreamWriter emp_w = new StreamWriter("Employee.txt", true);
+                                    emp_w.WriteLine((Employee.name, Employee.position).ToString());
+                                    
+                                    emp_w.Dispose();
+                                    Console.WriteLine("Employees List:");
+                                    //Pass the file path and file name to the StreamReader constructor
+                                    StreamReader emp_r = new StreamReader("Employee.txt", true);
+                                    //Read the first line of text
+                                    var line = emp_r.ReadLine();
+                                    //Continue to read until you reach end of f1ile
+                                    while (line != null)
+                                    {
+                                        //write the lie to console window
+                                        Console.WriteLine(line);
+                                        //Read the next line
+                                        line = emp_r.ReadLine();
+                                    }
 
+                                    //close the file
+                                    emp_r.Close();
+                                }
+                                else
+                                {
+                                    throw new Exception("error employee");
+                                }
+
+                                break;
+                            }
+                            case "2":
+                            {
+                                Console.WriteLine("Employees List:");
+                                //Pass the file path and file name to the StreamReader constructor
+                                StreamReader emp_r = new StreamReader("Employee.txt", true);
+                                //Read the first line of text
+                                var line = emp_r.ReadLine();
+                                //Continue to read until you reach end of f1ile
+                                while (line != null)
+                                {
+                                    //write the lie to console window
+                                    Console.WriteLine(line);
+                                    //Read the next line
+                                    line = emp_r.ReadLine();
+                                }
+
+                                //close the file
+                                emp_r.Close();
+                                break;
+                            }
+                            case "3":
+                                Employees.DeleteEmployee();
+                                break;
                         }
                         Console.WriteLine("If you added employee, input stop, if you want to continue press enter:");
                         x = Console.ReadLine();
                     }
+                    break;
                 }
-                
-                if (entrance == "tables")
+
+                case "5":
                 {
                     // start
                     RestaurantManager manager = new RestaurantManager();
-                    string Number_table;
-                    string Seats_table;
-                    var x = Console.ReadLine();
+                    var x = "start";
                     // Create a new table and add it to the list of tables.
                     Table table = new Table();
-                    manager.AddTable(table);
+                    Tables.AddTable(table);
                     // Display the list of orders.
                     List<Table> tables = manager.GetTables();
+
                     while (x != "stop")
                     {
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Table_Number:");
-                        Number_table = Console.ReadLine();
-                        Console.WriteLine("Please Input Table_Seats:");
-                        Seats_table = Console.ReadLine();
-                        // Create a new table and add it to the list of tabless.
-                        table.Number = Number_table;
-                        table.Seats = Seats_table;
-                        manager.AddTable(table);
-                        // Display the list of Tables.
-                        Console.WriteLine("Tables List:");
-                        foreach (Table i in tables)
+                        Console.WriteLine("Chose the option: add-1, observe-2, remove-3");
+                        x = Console.ReadLine();
+                        switch (x)
                         {
-                            Console.WriteLine($"Name: {i.Number}");
-                            Console.WriteLine($"Position: {i.Seats}");
+                            case "1":
+                            {
+                                // Prompt the user to input information.
+                                Console.WriteLine("Please Input Table_Number:");
+                                var Table_number = Console.ReadLine();
+                                Console.WriteLine("Please Input Table_Position:");
+                                var Table_seat = Console.ReadLine();
+                                // Create a new order and add it to the list of Employees.
+                                Table.number = Table_number;
+                                Table.seats = Table_seat;
+                                Tables.AddTable(table);
+                                // Display the list of Employees.
+                                const string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
+                                if (System.IO.Directory.Exists(directoryPath))
+                                {
+                                    StreamWriter emp_w = new StreamWriter("Table.txt", true);
+                                    emp_w.WriteLine((Table.number, Table.seats).ToString());
+                                    
+                                    emp_w.Dispose();
+                                    Console.WriteLine("Table List:");
+                                    //Pass the file path and file name to the StreamReader constructor
+                                    StreamReader tbl_r = new StreamReader("Table.txt", true);
+                                    //Read the first line of text
+                                    var line = tbl_r.ReadLine();
+                                    //Continue to read until you reach end of f1ile
+                                    while (line != null)
+                                    {
+                                        //write the lie to console window
+                                        Console.WriteLine(line);
+                                        //Read the next line
+                                        line = tbl_r.ReadLine();
+                                    }
 
+                                    //close the file
+                                    tbl_r.Close();
+                                }
+                                else
+                                {
+                                    throw new Exception("error table");
+                                }
+
+                                break;
+                            }
+                            case "2":
+                            {
+                                Console.WriteLine("Tables List:");
+                                //Pass the file path and file name to the StreamReader constructor
+                                StreamReader tbl_r = new StreamReader("Table.txt", true);
+                                //Read the first line of text
+                                var line = tbl_r.ReadLine();
+                                //Continue to read until you reach end of f1ile
+                                while (line != null)
+                                {
+                                    //write the line to console window
+                                    Console.WriteLine(line);
+                                    //Read the next line
+                                    line = tbl_r.ReadLine();
+                                }
+
+                                //close the file
+                                tbl_r.Close();
+                                break;
+                            }
+                            case "3":
+                                Tables.DeleteTable();
+                                break;
                         }
                         Console.WriteLine("If you added table, input stop, if you want to continue press enter:");
                         x = Console.ReadLine();
                     }
+
+                    break;
                 }
-                if (entrance == "customers")
+
+                case "6":
                 {
                     // start
                     RestaurantManager manager = new RestaurantManager();
-                    string Name_customer;
-                    string PhoneNumber_customer;
-                    var x = Console.ReadLine();
+                    var x = "start";
                     // Create a new table and add it to the list of tables.
                     Customer customer = new Customer();
-                    manager.AddCustomer(customer);
+                    Customers.AddCustomer(customer);
                     // Display the list of orders.
                     List<Customer> customers = manager.GetCustomers();
+
                     while (x != "stop")
                     {
-                        // Prompt the user to input information.
-                        Console.WriteLine("Please Input Customer_Name:");
-                        Name_customer = Console.ReadLine();
-                        Console.WriteLine("Please Input Customer_PhoneNumber:");
-                        PhoneNumber_customer = Console.ReadLine();
-                        // Create a new table and add it to the list of tabless.
-                        customer.Name = Name_customer;
-                        customer.PhoneNumber = PhoneNumber_customer;
-                        manager.AddCustomer(customer);
-                        // Display the list of Customers.
-                        Console.WriteLine("Tables List:");
-                        foreach ( Customer i in customers)
+                        Console.WriteLine("Chose the option: add-1, observe-2, remove-3");
+                        x = Console.ReadLine();
+                        switch (x)
                         {
-                            Console.WriteLine($"Name: {i.Name}");
-                            Console.WriteLine($"PhoneNumber: {i.PhoneNumber}");
+                            case "1":
+                            {
+                                // Prompt the user to input information.
+                                Console.WriteLine("Please Input Customer_name:");
+                                var Customer_name = Console.ReadLine();
+                                Console.WriteLine("Please Input Customer_phone_number:");
+                                var Customer_phone_number = Console.ReadLine();
+                                // Create a new order and add it to the list of Customers.
+                                Customer.name = Customer_name;
+                                Customer.phoneNumber = Customer_phone_number;
+                                Customers.AddCustomer(customer);
+                                // Display the list of Customers.
+                                const string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
+                                if (System.IO.Directory.Exists(directoryPath))
+                                {
+                                    StreamWriter cst_w = new StreamWriter("Customer.txt", true);
+                                    cst_w.WriteLine((Customer.name, Customer.phoneNumber).ToString());
+                                    
+                                    cst_w.Dispose();
+                                    
+                                    Console.WriteLine("Customers List:");
+                                    //Pass the file path and file name to the StreamReader constructor
+                                    StreamReader cst_r = new StreamReader("Customer.txt", true);
+                                    //Read the first line of text
+                                    var line = cst_r.ReadLine();
+                                    //Continue to read until you reach end of f1ile
+                                    while (line != null)
+                                    {
+                                        //write the line to console window
+                                        Console.WriteLine(line);
+                                        //Read the next line
+                                        line = cst_r.ReadLine();
+                                    }
 
+                                    //close the file
+                                    cst_r.Close();
+                                }
+                                else
+                                {
+                                    throw new Exception("error table");
+                                }
+
+                                break;
+                            }
+                            case "2":
+                            {
+                                Console.WriteLine("Customers List:");
+                                //Pass the file path and file name to the StreamReader constructor
+                                StreamReader cst_r = new StreamReader("Customer.txt", true);
+                                //Read the first line of text
+                                var line = cst_r.ReadLine();
+                                //Continue to read until you reach end of f1ile
+                                while (line != null)
+                                {
+                                    //write the line to console window
+                                    Console.WriteLine(line);
+                                    //Read the next line
+                                    line = cst_r.ReadLine();
+                                }
+
+                                //close the file
+                                cst_r.Close();
+                                break;
+                            }
+                            case "3":
+                                Customers.DeleteCustomer();
+                                break;
                         }
-                        Console.WriteLine("If you added customers, input stop, if you want to continue press enter:");
+                        Console.WriteLine("If you added customer, input stop, if you want to continue press enter:");
                         x = Console.ReadLine();
                     }
+
+                    break;
                 }
             }
         }
-        // Create a struct to store information about an ingredient.
-        public struct Ingredient
-        {
-            public string Name;
-            public decimal Price;
-            
-        }
-
-        // Create a struct to store information about a dish.
-        public struct Dish
-        {
-            public string Name;
-            public decimal Price;
-        }
-
-        // Create a struct to store information about an order.
-        public struct Order
-        {
-            public string Name;
-            public decimal TotalPrice;
-        }
-
-        // Create a struct to store information about an employee.
-        public struct Employee
-        {
-            public string Name;
-            public string Position;
-        }
-
-        // Create a struct to store information about a table.
-        public struct Table
-        {
-            public string Number;
-            public string Seats;
-        }
-
-        // Create a struct to store information about a customer.
-        public struct Customer
-        {
-            public string Name;
-            public string PhoneNumber;
-        }
-
-        // Create a class to manage the restaurant.
-        public class RestaurantManager
-        {
-            public List<Ingredient> Ingredients = new List<Ingredient>(); // добавили инициализацию
-            public List<Dish> Dishes = new List<Dish>(); // добавили инициализацию
-            public List<Employee> Employees = new List<Employee>(); // добавили инициализацию
-            public List<Table> Tables = new List<Table>(); // добавили инициализацию
-            public List<Customer> Customers = new List<Customer>(); // добавили инициализацию
-            public List<Order> Orders = new List<Order>(); // добавили инициализацию
-
-            // Add a dish to the list of dishes.
-            public void AddDish(Dish dish)
-            {
-                Dishes.Add(dish);
-            }
-
-            // Add an ingredient to the list of ingredients.
-            public void AddIngredient(Ingredient ingredient)
-            {
-                Ingredients.Add(ingredient);
-            }
-
-            // Add an employee to the list of employees.
-            public void AddEmployee(Employee employee)
-            {
-                Employees.Add(employee);
-            }
-
-            // Add a table to the list of tables.
-            public void AddTable(Table table)
-            {
-                Tables.Add(table);
-            }
-
-            // Add a customer to the list of customers.
-            public void AddCustomer(Customer customer)
-            {
-                Customers.Add(customer);
-            }
-
-            // Add an order to the list of orders.
-            public void AddOrder(Order order)
-            {
-                Orders.Add(order);
-            }
-
-            // Return the list of dishes.
-            public List<Dish> GetDishes()
-            {
-                return Dishes;
-            }
-
-            // Return the list of ingredients.
-            public List<Ingredient> GetIngredients()
-            {
-                return Ingredients;
-            }
-
-            // Return the list of employees.
-            public List<Employee> GetEmployees()
-            {
-                return Employees;
-            }
-
-            // Return the list of tables.
-            public List<Table> GetTables()
-            {
-                return Tables;
-            }
-
-            // Return the list of customers.
-            public List<Customer> GetCustomers()
-            {
-                return Customers;
-            }
-
-            // Return the list of orders.
-            public List<Order> GetOrders()
-            {
-                return Orders;
-            }
-            
-        }
     }
-}
+
+// Create a struct to store information about an ingredient.
+    public struct Ingredient
+    {
+        public string Name  { get; }
+        public string Price { get; }
+        public string Amount { get; }
+        
+        public Ingredient(string name, string price, string amount)
+        {
+            this.Price = price;
+            this.Name = name;
+            this.Amount = amount;
+        }
+
+        public static string name { get; set; }
+        public static string price { get; set; }
+        public static string amount { get; set; }
+
+    }
+    // Create a struct to store information about a dish.
+    public struct Dish
+    {
+        public string Name { get; }
+        public string Price { get; }
+
+        public Dish(string name, string price)
+        {
+            this.Price = price;
+            this.Name = name;
+        }
+
+        public static string name { get; set; }
+        public static string price { get; set; }
+
+    }
+
+    // Create a struct to store information about an order.
+    public struct Order
+    {
+        public string Name { get; }
+        public string TotalPrice { get; }
+        
+        public Order(string name, string totalprice)
+        {
+            this.Name = name;
+            this.TotalPrice = totalprice;
+        }
+
+        public static string name { get; set; }
+        public static string totalprice { get; set; } }
+    }
+
+    // Create a struct to store information about an employee.
+    public struct Employee
+    {
+        public string Name { get; }
+        public string Position { get; }
+        
+        public Employee (string name, string position)
+        {
+            this.Name = name;
+            this.Position = position;
+        }
+
+        public static string name { get; set; }
+        public static string position { get; set; }
+    }
+
+    // Create a struct to store information about a table.
+    public struct Table
+    {
+        public string Number { get; }
+        public string Seats { get; }
+        
+        public Table(string number, string seats)
+        {
+            this.Number = number;
+            this.Seats = seats;
+        }
+
+        public static string number { get; set; }
+        public static string seats { get; set; }
+    }
+
+    // Create a struct to store information about a customer.
+    public struct Customer
+    {
+        public string Name { get; }
+        public string PhoneNumber { get; }
+        public Customer(string name, string phoneNumber)
+        {
+            this.Name = name;
+            this.PhoneNumber = phoneNumber;
+        }
+
+        public static string name { get; set; }
+        public static string phoneNumber { get; set; }
+    }
+    
