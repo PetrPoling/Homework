@@ -6,16 +6,14 @@ namespace RMS_Finita
 
     public class RestaurantManager : Rms
     {
-        public static List<Ingredient> Ingredients = new List<Ingredient>(); // добавили инициализацию
+        public static List<Ingredient> Ingredients = new List<Ingredient>();
         public static List<Dish> Dishes = new List<Dish>();
         public static List<Employee> Employees = new List<Employee>();
         public static List<Table> Tables = new List<Table>();
-        public static List<Customer> Customers = new List<Customer>(); 
+        public static List<Customer> Customers = new List<Customer>();
         public static List<Order> Orders = new List<Order>();
     
-
         
-
         // Return the list of ingredients.
         public List<Ingredient> GetIngredients()
         {
