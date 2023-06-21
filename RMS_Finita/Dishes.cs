@@ -11,7 +11,7 @@ namespace RMS_Finita
     
         public static void DeleteDish()
         {
-            const string filePath = "Dishes.txt";
+            const string filePath = "Dish.txt";
             Console.WriteLine("Type dish you want to delete in such format (Dish, price):");
             var rem = Console.ReadLine();
             string[] lines = File.ReadAllLines(filePath);
@@ -25,7 +25,7 @@ namespace RMS_Finita
             }
             File.WriteAllLines(filePath, lines);
             Console.WriteLine("Else dishes:");
-            StreamReader dish_r = new StreamReader("Dishes.txt", true);
+            StreamReader dish_r = new StreamReader("Dish.txt", true);
             //Read the first line of text
             var line = dish_r.ReadLine();
             //Continue to read until you reach end of f1ile

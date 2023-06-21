@@ -141,13 +141,13 @@ public class Rms
                             const string directoryPath = @"D:\Git Hub\Homework\RMS_Finita\bin\Debug\net6.0";
                             if (System.IO.Directory.Exists(directoryPath))
                             {
-                                StreamWriter dish_w = new StreamWriter("Dishes.txt", true);
+                                StreamWriter dish_w = new StreamWriter("Dish.txt", true);
                                 dish_w.WriteLine((Dish.name, Dish.price).ToString());
 
                                 dish_w.Dispose();
                                 Console.WriteLine("Dishes List:");
                                 //Pass the file path and file name to the StreamReader constructor
-                                StreamReader dish_r = new StreamReader("Dishes.txt", true);
+                                StreamReader dish_r = new StreamReader("Dish.txt", true);
                                 //Read the first line of text
                                 var line = dish_r.ReadLine();
                                 //Continue to read until you reach end of f1ile
@@ -172,7 +172,7 @@ public class Rms
                         if (x == "2")
                         {
                             Console.WriteLine("Dishes List:");
-                            StreamReader dish_r = new StreamReader("Dishes.txt", true);
+                            StreamReader dish_r = new StreamReader("Dish.txt", true);
                             //Read the first line of text
                             var line = dish_r.ReadLine();
                             //Continue to read until you reach end of f1ile
